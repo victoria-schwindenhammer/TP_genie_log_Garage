@@ -29,8 +29,13 @@ public class Voiture {
 	 */
 	public void entreAuGarage(Garage g) throws Exception {
 		// Et si la voiture est déjà dans un garage ?
+                if (this.estDansUnGarage() == true) {
+                    throw new IllegalArgumentException("La voiture est déjà au garage");
+                }
+                else {
 		Stationnement s = new Stationnement(this, g);
 		myStationnements.add(s);
+                }
 	}
 
 	/**
@@ -51,7 +56,11 @@ public class Voiture {
 	 */
 	public Set<Garage> garagesVisites() {
 		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+                HashSet<Garage> gV = new HashSet<Garage>();
+                for (Stationnement s : myStationnements) {
+                    gV.add(s.getGarage());
+                }
+	
 	}
 
 	/**
